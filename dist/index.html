@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Application Vue Admin</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <!--基于断点的隐藏类 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/display.css">
+    <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+
+    <style>
+        html,
+        body,
+        .layout-container {
+            height: 100%
+        }
+        
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: #EFEFEF;
+        }
+        
+        #app {
+            height: 100%;
+        }
+        
+        #logo {
+            background-color: #2D2F33 !important;
+            height: 55px;
+            line-height: 55px;
+            text-align: center;
+            font-size: 18px;
+            color: #fff !important;
+        }
+        
+        #logo img {
+            vertical-align: middle;
+            text-align: left;
+            margin-right: 7px;
+            width: 36px;
+            height: 36px;
+        }
+        
+        #logo>span {
+            width: 180px;
+            display: inline-block;
+            padding-right: 36px;
+        }
+        
+        #logo,
+        #logo>.el-tooltip {
+            padding: 0px 15px !important;
+        }
+        
+        #navbar {
+            background-color: #FFF;
+            height: 55px;
+            line-height: 55px;
+        }
+        
+        .menu-item,
+        .menu-item>.el-submenu__title,
+        .el-submenu.is-active .el-submenu__title {
+            font-size: 16px;
+            color: #eeeeee;
+            border-bottom: 1px solid #5A5E66;
+        }
+        
+        .menu-item>i,
+        .menu-item>div>i,
+        .menu-item>.el-submenu__title>i {
+            font-size: 22px;
+            min-width: 38px;
+        }
+        
+        .menu-item:hover,
+        .menu-item:hover>i,
+        .menu-item:hover>div>i,
+        .menu-item:hover>.el-submenu__title,
+        .menu-item:hover>.el-submenu__title>i {
+            color: #fff;
+        }
+        
+        .menu-item>.el-menu>.menu-item {
+            background-color: rgb(64, 74, 80) !important;
+        }
+        
+        .menu-item>.el-menu>.menu-item:hover {
+            background-color: #409EFF !important;
+        }
+        
+        #sidebar,
+        #content {
+            float: left;
+        }
+        
+        .fa.fa-bars {
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body class="">
+    <el-row id="app" class="layout-container">
+        <div id="sidebar" class="layout-container">
+            <el-menu class="layout-container" default-active="2" background-color="#545c64" active-text-color="#fff" :collapse="isCollapse">
+                <el-menu-item id="logo" index="1">
+                    <img src="./c2a605fbc0e687b2e1b4b90a7c445cdd.png" />
+                    <span slot="title">Vue Admin</span>
+                </el-menu-item>
+                <el-menu-item index="2" class="menu-item">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <span slot="title">Dashboards</span>
+                </el-menu-item>
+                <el-submenu index="3" class="menu-item">
+                    <template slot="title">
+                                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                    <span slot="title">Statistics</span>
+                                </template>
+                    <el-menu-item index="3-1" class="menu-item">
+                        <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                        <span slot="title">Stat Pie Chart</span>
+                    </el-menu-item>
+                    <el-menu-item index="3-2" class="menu-item">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                        <span slot="title">Stat Line Chart</span>
+                    </el-menu-item>
+                    <el-menu-item index="3-3" class="menu-item">
+                        <i class="fa fa-area-chart" aria-hidden="true"></i>
+                        <span slot="title">Stat Area Chart</span>
+                    </el-menu-item>
+                </el-submenu>
+                <el-menu-item index="4" class="menu-item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span slot="title">Accounts</span>
+                </el-menu-item>
+                <el-menu-item index="5" class="menu-item">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span slot="title">Groups</span>
+                </el-menu-item>
+            </el-menu>
+        </div>
+        <div id="content">
+            <div id="navbar">
+                <el-button @click="switchCollapse"><i class="fa fa-bars" aria-hidden="true"></i></el-button>
+            </div>
+        </div>
+
+        <!-- 先引入 Vue -->
+        <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+        <!-- 引入组件库 -->
+        <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    isCollapse: false
+                },
+                methods: {
+                    switchCollapse() {
+                        this.isCollapse = this.isCollapse ? false : true;
+
+                    }
+                }
+            })
+        </script>
+</body>
+
+</html>
