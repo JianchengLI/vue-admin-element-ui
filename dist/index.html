@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Application Vue Admin</title>
+    <title>Vue Admin with Elements UI</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
     <!--基于断点的隐藏类 -->
@@ -29,7 +29,7 @@
         }
         
         #logo,
-        #logo-portail {
+        #logo-portrait {
             background-color: #2D2F33 !important;
             height: 55px;
             line-height: 55px;
@@ -39,7 +39,7 @@
         }
         
         #logo img,
-        #logo-portail img{
+        #logo-portrait img{
             vertical-align: middle;
             text-align: left;
             margin-right: 7px;
@@ -47,7 +47,7 @@
             height: 36px;
         }
 
-        #logo-portail>span{
+        #logo-portrait>span{
             width: 160px;
             display: inline-block;
             padding-right: 36px;
@@ -64,17 +64,24 @@
             padding: 0px 15px !important;
         }
         
-        #navbar {
+        .navbar {
             background-color: #FFF;
             height: 55px;
             line-height: 55px;
             border-bottom: 1px solid #D8DCE5;
         }
-        #navbar > .el-button{
+        .navbar > .el-button{
             margin: 0px; 
             border: 0px;
         }
         
+        .navbar > .el-button:focus {
+            background-color: #FFFFFF;  
+        }
+        .navbar > .el-button:hover {
+            background-color: #FFFFFF; 
+        }
+
         .menu-item,
         .menu-item > .el-submenu__title,
         .el-submenu.is-active .el-submenu__title {
@@ -108,15 +115,33 @@
         
         #sidebar, #sidebar-portrait,
         #content { float: left;}
-
+        #sidebar-portrait{
+            position: absolute;
+        }
         #content { 
             width: 100%;
             display: contents;
         }
         
+        .title-portrait{
+            color: #878D99;
+            font-size: 20px;
+
+        }
+       
+        #page-title-portrait > .el-button{
+
+        }
+
+        #page-title-portrait > .title-portrait-ellipsis{
+     
+            font-size: 26px;
+        }
+
         .fa.fa-bars {
             font-size: 28px;
         }
+        
     </style>
 </head>
 
@@ -126,7 +151,7 @@
             <el-menu class="layout-container" default-active="2" background-color="#545c64" active-text-color="#fff" :collapse="isCollapse">
                 <el-menu-item id="logo" index="1">
                     <img src="./c2a605fbc0e687b2e1b4b90a7c445cdd.png" />
-                    <span slot="title">Vue Admin</span>
+                    <span slot="title">Vue-Admin-Element</span>
                 </el-menu-item>
                 <el-menu-item index="2" class="menu-item">
                     <i class="fa fa-tachometer" aria-hidden="true"></i>
@@ -160,48 +185,65 @@
                 </el-menu-item>
             </el-menu>
         </div>
+        <transition name="el-fade-in">
         <div id="sidebar-portrait" class="layout-container hidden-sm-and-up" v-show="isCollapseSidebarPortrait">
-                <el-menu class="layout-container" default-active="2" background-color="#545c64" active-text-color="#fff" :collapse="isCollapse">
-                    <el-menu-item id="logo" index="1">
-                        <img src="./c2a605fbc0e687b2e1b4b90a7c445cdd.png" />
-                        <span slot="title">Vue Admin</span>
+            <el-menu class="layout-container" default-active="2" background-color="#545c64" active-text-color="#fff">
+                <el-menu-item id="logo" index="1">
+                    <img src="./c2a605fbc0e687b2e1b4b90a7c445cdd.png" />
+                    <span slot="title">Vue-Admin-Element</span>
+                </el-menu-item>
+                <el-menu-item index="2" class="menu-item">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <span slot="title">Dashboards</span>
+                </el-menu-item>
+                <el-submenu index="3" class="menu-item">
+                    <template slot="title">
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                        <span slot="title">Statistics</span>
+                    </template>
+                    <el-menu-item index="3-1" class="menu-item">
+                        <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                        <span slot="title">Stat Pie Chart</span>
                     </el-menu-item>
-                    <el-menu-item index="2" class="menu-item">
-                        <i class="fa fa-tachometer" aria-hidden="true"></i>
-                        <span slot="title">Dashboards</span>
+                    <el-menu-item index="3-2" class="menu-item">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                        <span slot="title">Stat Line Chart</span>
                     </el-menu-item>
-                    <el-submenu index="3" class="menu-item">
-                        <template slot="title">
-                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                            <span slot="title">Statistics</span>
-                        </template>
-                        <el-menu-item index="3-1" class="menu-item">
-                            <i class="fa fa-pie-chart" aria-hidden="true"></i>
-                            <span slot="title">Stat Pie Chart</span>
-                        </el-menu-item>
-                        <el-menu-item index="3-2" class="menu-item">
-                            <i class="fa fa-line-chart" aria-hidden="true"></i>
-                            <span slot="title">Stat Line Chart</span>
-                        </el-menu-item>
-                        <el-menu-item index="3-3" class="menu-item">
-                            <i class="fa fa-area-chart" aria-hidden="true"></i>
-                            <span slot="title">Stat Area Chart</span>
-                        </el-menu-item>
-                    </el-submenu>
-                    <el-menu-item index="4" class="menu-item">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <span slot="title">Accounts</span>
+                    <el-menu-item index="3-3" class="menu-item">
+                        <i class="fa fa-area-chart" aria-hidden="true"></i>
+                        <span slot="title">Stat Area Chart</span>
                     </el-menu-item>
-                    <el-menu-item index="5" class="menu-item">
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                        <span slot="title">Groups</span>
-                    </el-menu-item>
-                </el-menu>
-            </div>
+                </el-submenu>
+                <el-menu-item index="4" class="menu-item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span slot="title">Accounts</span>
+                </el-menu-item>
+                <el-menu-item index="5" class="menu-item">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span slot="title">Groups</span>
+                </el-menu-item>
+            </el-menu>
+        </div>
+        </transition>
         <div id="content">
-            <div id="navbar">
-                <el-button class="hidden-sm-and-down" @click="switchCollapse"><i class="fa fa-bars" aria-hidden="true"></i></el-button>
-                <el-button class="hidden-sm-and-up" @click="switchCollapseSidebarPortrait"><i class="fa fa-bars" aria-hidden="true"></i></el-button>
+            <div id="page-title-landscape" class="navbar hidden-sm-and-down">
+                <el-button @click="isCollapse = !isCollapse">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </el-button>
+            </div>
+            <div id="page-title-portrait" class="navbar hidden-sm-and-up">
+                <el-button @click="isCollapseSidebarPortrait = true" >
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </el-button>
+                <div class="title-portrait">
+                    <span>Vue-Admin-Element / Page Title</span>
+                </div>
+                <el-button class="title-portrait-ellipsis" >
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>                        
+                </el-button>
+            </div>
+            <div id="page">
+
             </div>
         </div>
 
@@ -216,13 +258,7 @@
                     isCollapse: false,
                     isCollapseSidebarPortrait : false,
                 },
-                methods: {
-                    switchCollapse() {
-                        this.isCollapse = this.isCollapse ? false : true;
-                    },
-                    switchCollapseSidebarPortrait(){
-                        this.isCollapseSidebarPortrait = this.isCollapseSidebarPortrait ? false : true;
-                    }
+                methods:{
                 }
             })
         </script>
