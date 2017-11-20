@@ -25,7 +25,7 @@
         }
         
         #app {
-            height: 100%;
+            /* height: 100%; */
         }
         
         #logo,
@@ -129,6 +129,9 @@
 
         }
        
+       #page {
+           height: 100%;
+       }
         #page-title-portrait > .el-button{
 
         }
@@ -145,8 +148,8 @@
     </style>
 </head>
 
-<body class="">
-    <el-row id="app" class="layout-container">
+<body >
+    <div id="app" class="layout-container">
         <div id="sidebar" class="layout-container hidden-sm-and-down">
             <el-menu class="layout-container" default-active="2" background-color="#545c64" active-text-color="#fff" :collapse="isCollapse">
                 <el-menu-item id="logo" index="1">
@@ -242,7 +245,7 @@
                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>                        
                 </el-button>
             </div>
-            <div id="page">
+            <div id="page"  @click="isCollapseSidebarPortrait = false" >
 
             </div>
         </div>
@@ -259,6 +262,9 @@
                     isCollapseSidebarPortrait : false,
                 },
                 methods:{
+                   closeSidebarPortrait: function() {
+                        this.isCollapseSidebarPortrait = false;
+                   }
                 }
             })
         </script>
